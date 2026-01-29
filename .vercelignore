@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Django
+staticfiles/
+media/
+
+# Git
+.git/
+.gitignore
+
+# Node
+node_modules/
+
+# OS
+.DS_Store
