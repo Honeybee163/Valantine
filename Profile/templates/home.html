@@ -1,0 +1,249 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret Valentine</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', cursive;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        body {
+            background-image: url("{% static 'pic7.png' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+            position: relative;
+        }
+
+        /* 💕 Floating Hearts */
+        .heart {
+            position: absolute;
+            bottom: -50px;
+            font-size: 30px;
+            animation: floatUp 8s linear infinite;
+            opacity: 0.8;
+        }
+
+        .heart:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .heart:nth-child(2) { left: 25%; animation-delay: 2s; }
+        .heart:nth-child(3) { left: 40%; animation-delay: 4s; }
+        .heart:nth-child(4) { left: 60%; animation-delay: 1s; }
+        .heart:nth-child(5) { left: 75%; animation-delay: 3s; }
+        .heart:nth-child(6) { left: 90%; animation-delay: 5s; }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            100% {
+                transform: translateY(-120vh) scale(1.4);
+                opacity: 0;
+            }
+        }
+
+        /* ☁️ OUTER CLOUD */
+        .container {
+            position: relative;
+            width: 80%;
+            max-width: 900px;
+            text-align: center;
+            background: rgba(255, 220, 235, 0.66);
+            padding: 70px 50px;
+            border-radius: 120px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            z-index: 2;
+            border: 4px dotted white;
+        }
+
+        /* 🎞️ WELCOME GIF */
+        .welcome-gif {
+            max-width: 100%;
+            max-height: 260px;
+            height: auto;
+            display: block;
+            margin: 20px auto 30px;
+            border-radius: 24px;
+            object-fit: contain;
+        }
+
+        .container::before,
+        .container::after {
+            content: "";
+            position: absolute;
+            background: rgba(255, 220, 235, 0.75);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .container::before {
+            width: 200px;
+            height: 200px;
+            top: -70px;
+            left: 90px;
+        }
+
+        .container::after {
+            width: 240px;
+            height: 240px;
+            top: -90px;
+            right: 80px;
+        }
+
+        /* ☁️ INNER CLOUD */
+        .card {
+            position: relative;
+            background: rgba(255, 240, 246, 0.95);
+            border-radius: 90px;
+            padding: 45px;
+            border: 2px dashed #f5a6c6;
+        }
+
+        .card::before,
+        .card::after {
+            content: "";
+            position: absolute;
+            background: rgba(255, 240, 246, 0.95);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .card::before {
+            width: 130px;
+            height: 130px;
+            top: -45px;
+            left: 60px;
+        }
+
+        .card::after {
+            width: 160px;
+            height: 160px;
+            top: -60px;
+            right: 55px;
+        }
+
+        .title {
+            font-size: clamp(28px, 5vw, 42px);
+            color: #b03060;
+            margin-bottom: 10px;
+        }
+
+        .title span {
+            display: block;
+            font-size: clamp(18px, 3.2vw, 28px);
+            color: #d24c7a;
+        }
+
+        .card h2 {
+            font-size: clamp(20px, 3.6vw, 30px);
+            color: #a12a50;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            font-size: clamp(16px, 2.6vw, 18px);
+            color: #6d2b3f;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            margin-top: 25px;
+            padding: 14px 38px;
+            font-size: clamp(16px, 2.6vw, 18px);
+            border: none;
+            border-radius: 40px;
+            background: linear-gradient(to right, #ff5fa2, #ff2f7b);
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(255, 47, 123, 0.4);
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        /* 📱 Mobile tweaks */
+        @media (max-width: 520px) {
+            .heart { font-size: 22px; }
+
+            .container {
+                width: 100%;
+                padding: 28px 18px;
+                border-radius: 42px;
+            }
+
+            .welcome-gif {
+                max-height: 180px;
+                margin: 14px auto 22px;
+            }
+
+            .card {
+                padding: 22px 18px;
+                border-radius: 34px;
+            }
+
+            .btn {
+                width: 100%;
+                padding: 14px 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 💕 Floating Hearts -->
+    <div class="heart">💖</div>
+    <div class="heart">💕</div>
+    <div class="heart">💗</div>
+    <div class="heart">💓</div>
+    <div class="heart">💞</div>
+    <div class="heart">💝</div>
+
+    <div class="container">
+        <div class="title">
+            <span>Welcome to Your</span>
+            Secret Valentine Page!
+        </div>
+
+        <img src="{% static 'welcome.gif' %}" alt="Welcome" class="welcome-gif">
+
+        <div class="card">
+            <h2>Hi Crush 💕</h2>
+            <p>I have something special to tell you…</p>
+            <p>But first, let’s play a little game! 💖</p>
+
+            <button class="btn">
+                <a href="{% url 'quiz' %}">Start the Fun ➡</a>
+            </button>
+        </div>
+    </div>
+
+</body>
+</html>

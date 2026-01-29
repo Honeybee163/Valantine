@@ -1,0 +1,14 @@
+{
+  "builds": [
+    {
+      "src": "Valantine/wsgi.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "Valantine/wsgi.py"
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', cursive;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        body {
+            background-image: url("{% static 'pic7.png' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+            position: relative;
+        }
+
+        .container {
+            background: rgba(255, 220, 235, 0.66);
+            padding: 50px 60px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+            max-width: 550px;
+            width: 90%;
+            z-index: 2;
+            border: 4px dotted white;
+        }
+
+        h1 {
+            color: #b8325a;
+            font-size: clamp(22px, 5.2vw, 36px);
+        }
+
+        /* 🎞️ GIF perfectly fitting */
+        .message-gif {
+            max-width: 100%;
+            max-height: 260px;
+            height: auto;
+            display: block;
+            margin: 0 auto 18px;
+            border-radius: 18px;
+            object-fit: contain;
+        }
+
+        /* 🎈 Balloon styles */
+        .balloon {
+            position: absolute;
+            bottom: -150px;
+            font-size: 60px;
+            animation: floatUp 8s linear infinite;
+            opacity: 0.9;
+            z-index: 1;
+        }
+
+        .balloon:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .balloon:nth-child(2) { left: 30%; animation-delay: 2s; }
+        .balloon:nth-child(3) { left: 50%; animation-delay: 4s; }
+        .balloon:nth-child(4) { left: 70%; animation-delay: 1s; }
+        .balloon:nth-child(5) { left: 90%; animation-delay: 3s; }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-120vh);
+                opacity: 0;
+            }
+        }
+
+        /* 📱 Mobile tweaks */
+        @media (max-width: 520px) {
+            .container {
+                padding: 28px 18px;
+                width: 100%;
+            }
+
+            .balloon {
+                font-size: 44px;
+            }
+
+            .message-gif {
+                max-height: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    {% if message is not None %}
+
+        <!-- 🎈 Balloons only when message exists -->
+        <div class="balloon">🎈</div>
+        <div class="balloon">🎈</div>
+        <div class="balloon">🎈</div>
+        <div class="balloon">🎈</div>
+        <div class="balloon">🎈</div>
+
+        <div class="container">
+            <img src="{% static 'source.gif' %}" alt="Message" class="message-gif">
+            <h1>I received your message 💖👀</h1>
+        </div>
+
+    {% else %}
+
+        <div class="container">
+            <h1>I wish you write a note 💕</h1>
+        </div>
+
+    {% endif %}
+
+</body>
+</html>
