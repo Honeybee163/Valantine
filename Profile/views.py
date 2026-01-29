@@ -1,5 +1,4 @@
-from django.shortcuts import render,redirect
-from .models import Message
+from django.shortcuts import render, redirect
 
 # Create your views here.
 def home(request):
@@ -13,8 +12,8 @@ def purpose(request):
     return render(request,'purpose.html')
 
 def received(request):
-    message = Message.objects.all()
-    return render(request,'received.html',{'message':message})
+    # When accessed directly, just show the fallback message
+    return render(request, 'received.html', {'message': None})
 
 def describe(request):
     return render(request,'describe.html')
@@ -28,7 +27,8 @@ def final(request):
         note = request.POST.get('note')
 
         if note:  # safety check
-            Message.objects.create(message=note)
-            return redirect('received')
+            # Directly render the "received" page with the note,
+            # avoiding any database writes on Vercel.
+            return render(request, 'received.html', {'message': note})
 
     return render(request, 'final.html')
