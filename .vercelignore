@@ -9,10 +9,6 @@ venv/
 env/
 .venv/
 
-# Django
-staticfiles/
-media/
-
 # Git
 .git/
 .gitignore
