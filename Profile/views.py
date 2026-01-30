@@ -22,13 +22,19 @@ def question(request):
     return render(request,'question.html')
 
 
+
+
 def final(request):
     if request.method == 'POST':
         note = request.POST.get('note')
 
-        if note:  # safety check
-            # Directly render the "received" page with the note,
-            # avoiding any database writes on Vercel.
+        if note:
+            # 🔥 SAVE TO DATABASE
+            ProfileMessage.objects.create(
+                message=note
+            )
+
+            # 🔥 THEN render page
             return render(request, 'received.html', {'message': note})
 
     return render(request, 'final.html')
