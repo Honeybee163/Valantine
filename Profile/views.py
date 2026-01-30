@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from .models import Message
 
 # Create your views here.
 def home(request):
@@ -30,7 +31,7 @@ def final(request):
 
         if note:
             # 🔥 SAVE TO DATABASE
-            ProfileMessage.objects.create(
+            Message.objects.create(
                 message=note
             )
 
